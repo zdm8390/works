@@ -235,3 +235,31 @@ footer {
     display: flex;
   }
 }
+/* 作品数表示 */
+.slider-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.slider-controls button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.slider-controls button:hover {
+  background-color: #555;
+}
