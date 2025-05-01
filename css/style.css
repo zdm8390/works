@@ -1,190 +1,183 @@
-/* ベース設定 */
+/* グローバル設定 */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
-  font-family: 'Helvetica Neue', sans-serif;
-  background-color: rgb(147, 207, 205);
-  color: #1a1a1a;
-  line-height: 1.6;
+  padding: 0;
+  background-color: rgb(147, 207, 205); /* 背景色 */
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 /* ヘッダー */
 header {
-  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #333;
   color: white;
-  padding: 20px 40px;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  z-index: 999;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px; /* 通常より小さく調整 */
+  z-index: 1000;
+  height: 60px;
 }
 
 header h1 {
-  font-size: 1.2rem;
   margin: 0;
+  font-size: 1.5rem;
 }
 
-/* ハンバーガーメニュー */
 .menu-toggle {
   display: none;
   flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
   cursor: pointer;
+  z-index: 2000;
 }
 
 .menu-toggle span {
-  background: white;
+  display: block;
   height: 3px;
+  background: #fff;
   margin: 4px 0;
-  width: 25px;
 }
 
-/* メニュー */
 nav {
-  position: fixed;
-  top: 60px;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  width: 200px;
-  display: none;
-  flex-direction: column;
-  padding: 10px;
+  display: flex;
 }
 
 nav a {
   color: white;
-  text-decoration: none;
-  padding: 10px;
-  border-bottom: 1px solid #333;
+  margin: 0 10px;
+  font-size: 1rem;
+  padding: 5px;
 }
 
 nav a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
 }
 
-/* 表示切替（JSで付与） */
-nav.active {
-  display: flex;
+@media screen and (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
 
-.menu-toggle.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-.menu-toggle.active span:nth-child(2) {
-  opacity: 0;
-}
-.menu-toggle.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* セクション */
+/* プロフィール */
 section {
-  padding: 100px 40px 60px;
-  max-width: 900px;
-  margin: 0 auto;
+  padding: 20px;
+  margin-top: 100px;
 }
 
-/* アンカーリンクの視認性向上 */
-a {
-  color: #004d66;
-  text-decoration: underline;
-}
-
-a:hover {
-  color: #002f3d;
-}
-
-/* 書影スタイル */
-.book-cover {
-  width: 150px;
-  height: auto;
-  border: 1px solid white;
+section h2 {
+  font-size: 1.5rem;
   margin-bottom: 10px;
 }
 
-/* 代表作セクションのレイアウト */
+section p {
+  margin-bottom: 5px;
+}
+
+/* 代表作 */
 .representative-wrapper {
   display: flex;
-  align-items: flex-start;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 40px;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .book-left {
-  flex: 0 0 auto;
-  max-width: 200px;
+  flex: 1;
+  margin-right: 20px;
+}
+
+.book-cover {
+  width: 100%;
+  max-width: 150px;
+  border: 2px solid white; /* 白い枠 */
+  border-radius: 5px;
 }
 
 .book-right {
-  flex: 1;
-  min-width: 200px;
+  flex: 2;
 }
 
-/* 作品スライダー */
+/* 長編・短編作品 */
 .slider-container {
-  position: relative;
-  overflow: hidden;
-}
-
-.slider {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
+  background-color: #ffffffcc; /* 半透明白 */
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 10px;
 }
 
 .slide {
   min-width: 100%;
+  background-color: #fdfdfd;
+  padding: 1rem;
   box-sizing: border-box;
-  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
 }
 
-.slider-controls {
-  text-align: center;
-  margin-top: 10px;
-}
-
+/* スライダーの操作ボタン */
 .slider-controls button {
-  background-color: #004d66;
+  background-color: #333;
   color: white;
   border: none;
-  padding: 8px 12px;
-  margin: 0 5px;
+  padding: 10px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 .slider-controls button:hover {
-  background-color: #002f3d;
+  background-color: #555;
 }
 
-/* TOPに戻るボタン */
 #back-to-top {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background-color: #004d66;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 50%;
+  bottom: 20px;
+  right: 20px;
   display: none;
-  font-size: 18px;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
   cursor: pointer;
-  z-index: 999;
+  border-radius: 5px;
 }
 
 #back-to-top:hover {
-  background-color: #002f3d;
+  background-color: #005fa3;
 }
 
-/* フッター */
 footer {
   text-align: center;
-  padding: 40px;
-  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  background-color: #333;
   color: white;
-  margin-top: 60px;
 }
