@@ -28,7 +28,7 @@ header {
   top: 0;
   width: 100%;
   z-index: 1000;
-  height: 60px;
+  height: 60px; /* ヘッダー高さ調整 */
 }
 
 header h1 {
@@ -127,27 +127,33 @@ section p {
   flex: 2;
 }
 
-/* 長編・短編作品 */
+/* スライド */
 .slider-container {
   display: flex;
-  overflow: hidden; /* スライドが外に出ないように */
+  overflow: hidden;
   margin-bottom: 2rem;
   border-radius: 10px;
   position: relative;
 }
 
 .slide {
-  flex-shrink: 0; /* スライドが縮まないように */
-  width: 100%; /* 一度に1枚のスライドが表示される */
+  flex-shrink: 0;
+  width: 100%;
   background-color: #fdfdfd;
   padding: 1rem;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 8px;
-  transition: transform 0.5s ease; /* スライドが動くときのアニメーション */
+  transition: transform 0.5s ease;
 }
 
-/* スライドの操作ボタン */
+/* スライドボタン */
+.slider-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
 .slider-controls button {
   background-color: #333;
   color: white;
@@ -155,12 +161,32 @@ section p {
   padding: 10px;
   cursor: pointer;
   border-radius: 5px;
+  font-size: 1.5rem;
 }
 
 .slider-controls button:hover {
   background-color: #555;
 }
 
+/* 代表作に関するスタイル */
+.representative-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px 0;
+}
+
+.book-left {
+  margin-right: 20px;
+}
+
+.book-cover {
+  width: 150px;
+  height: auto;
+  border: 2px solid white; /* 白い枠 */
+  border-radius: 5px;
+}
+
+/* トップに戻るボタン */
 #back-to-top {
   position: fixed;
   bottom: 20px;
@@ -183,4 +209,29 @@ footer {
   padding: 20px;
   background-color: #333;
   color: white;
+}
+
+/* ハンバーガーメニュー */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
