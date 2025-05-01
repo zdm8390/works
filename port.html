@@ -9,92 +9,108 @@
 </head>
 <body>
 
+  <!-- ヘッダー -->
   <header>
-    <h1>善意の第三者 / Written Works</h1>
-    <div class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+    <div class="container">
+      <h1><a href="#top">善意の第三者 / Written Works</a></h1>
+      <div class="hamburger" id="hamburger">&#9776;</div>
+      <nav>
+        <ul>
+          <li><a href="#profile">プロフィール</a></li>
+          <li><a href="#works">代表作</a></li>
+          <li><a href="#contact">お問い合わせ</a></li>
+        </ul>
+      </nav>
     </div>
-    <nav>
-      <a href="#profile">プロフィール</a>
-      <a href="#works">作品一覧</a>
-      <a href="#contact">お問い合わせ</a>
-    </nav>
   </header>
 
-  <section id="profile">
-    <h2>プロフィール</h2>
-    <p>図書館司書であり、元システムエンジニアの経歴を持つ小説家。2022年から小説投稿を開始し、2023年には第3回HJ小説大賞（後期）の最終選考に進出。2024年には「この感情が思い出に変わる頃には、」（扶桑社）で商業出版を果たした。</p>
-    <p>得意分野は青春小説、特に現実の日本の高校を舞台にした青春群像劇に力を入れている。</p>
-  </section>
+  <!-- スクロールTOPボタン -->
+  <button id="scroll-to-top">&#x2191;</button>
 
-  <section id="works">
-    <h2>代表作</h2>
-    <div class="representative-wrapper">
-      <div class="book-left">
-        <img src="image/top1.jpg" alt="書影" class="book-cover">
-      </div>
-      <div class="book-right">
-        <h3>この感情が思い出に変わる頃には、（扶桑社・2024年）</h3>
-        <p>若者たちの青春の中で、時間が過ぎ去るにつれて変わる感情と心の葛藤を描いた感動の物語。</p>
-      </div>
-    </div>
-
-    <h2>長編作品</h2>
-    <div class="slider-container" id="long-works">
-      <div class="slide">
-        <h3>作品A</h3>
-        <p>作品Aのあらすじがここに入ります。概要や詳細な内容がこの部分に表示されます。</p>
-      </div>
-      <div class="slide">
-        <h3>作品B</h3>
-        <p>作品Bのあらすじがここに入ります。概要や詳細な内容がこの部分に表示されます。</p>
-      </div>
-      <div class="slide">
-        <h3>作品C</h3>
-        <p>作品Cのあらすじがここに入ります。概要や詳細な内容がこの部分に表示されます。</p>
-      </div>
-    </div>
-
-    <div class="slider-controls">
-      <button id="prev-long">＜</button>
-      <button id="next-long">＞</button>
-    </div>
-
-    <h2>短編作品</h2>
-    <div class="slider-container" id="short-works">
-      <div class="slide">
-        <h3>作品A</h3>
-        <p>作品Aのあらすじがここに入ります。概要や詳細な内容がこの部分に表示されます。</p>
-      </div>
-      <div class="slide">
-        <h3>作品B</h3>
-        <p>作品Bのあらすじがここに入ります。概要や詳細な内容がこの部分に表示されます。</p>
-      </div>
-      <div class="slide">
-        <h3>作品C</h3>
-        <p>作品Cのあらすじがここに入ります。概要や詳細な内容がこの部分に表示されます。</p>
-      </div>
-    </div>
-
-    <div class="slider-controls">
-      <button id="prev-short">＜</button>
-      <button id="next-short">＞</button>
+  <!-- プロフィールセクション -->
+  <section id="profile" class="section">
+    <div class="content-box">
+      <h2>プロフィール</h2>
+      <p>図書館司書として活動しながら、小説家としても活動している。元システムエンジニア。得意分野は青春小説。現実の日本の高校を舞台にした青春群像劇を得意としている。</p>
     </div>
   </section>
 
-  <section id="contact">
-    <h2>お問い合わせ</h2>
-    <p>メールでのお問い合わせは、<a href="mailto:speed.and.knives@gmail.com">こちら</a>からご連絡ください。</p>
+  <!-- 代表作セクション -->
+  <section id="works" class="section">
+    <div class="content-box">
+      <h2>代表作</h2>
+      <div class="works">
+        <div class="work">
+          <div class="work-details">
+            <img src="image/top1.jpg" alt="この感情が思い出に変わる頃には、">
+            <div class="work-info">
+              <p>「この感情が思い出に変わる頃には、<br>(扶桑社・2024年)」</p>
+              <p>あらすじ: [あらすじをここに記載]</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <button id="back-to-top">トップに戻る</button>
+  <!-- 長編作品セクション -->
+  <section id="long-works" class="section">
+    <div class="content-box">
+      <h2>長編作品</h2>
+      <div class="slide-container long-works">
+        <div class="slide-wrapper">
+          <!-- スライド1 -->
+          <div class="slide">
+            <img src="image/sample1.jpg" alt="長編作品1">
+            <p>作品名: 作品A<br>あらすじ: [あらすじをここに記載]</p>
+          </div>
+          <!-- スライド2 -->
+          <div class="slide">
+            <img src="image/sample2.jpg" alt="長編作品2">
+            <p>作品名: 作品B<br>あらすじ: [あらすじをここに記載]</p>
+          </div>
+        </div>
+        <button class="prev">&#60;</button>
+        <button class="next">&#62;</button>
+        <p class="slide-count">1/2</p>
+      </div>
+    </div>
+  </section>
 
-  <footer>
-    <p>&copy; 2025 善意の第三者. All rights reserved.</p>
-  </footer>
+  <!-- 短編作品セクション -->
+  <section id="short-works" class="section">
+    <div class="content-box">
+      <h2>短編作品</h2>
+      <div class="slide-container short-works">
+        <div class="slide-wrapper">
+          <!-- スライド1 -->
+          <div class="slide">
+            <img src="image/sample3.jpg" alt="短編作品1">
+            <p>作品名: 作品C<br>あらすじ: [あらすじをここに記載]</p>
+          </div>
+          <!-- スライド2 -->
+          <div class="slide">
+            <img src="image/sample4.jpg" alt="短編作品2">
+            <p>作品名: 作品D<br>あらすじ: [あらすじをここに記載]</p>
+          </div>
+        </div>
+        <button class="prev">&#60;</button>
+        <button class="next">&#62;</button>
+        <p class="slide-count">1/2</p>
+      </div>
+    </div>
+  </section>
 
-  <script src="js/script.js"></script> <!-- ここでJavaScriptを読み込む -->
+  <!-- お問い合わせセクション -->
+  <section id="contact" class="section">
+    <div class="content-box">
+      <h2>お問い合わせ</h2>
+      <p>ご連絡は以下のメールアドレスにお願いいたします。</p>
+      <p><a href="mailto:speed.and.knives@gmail.com">speed.and.knives@gmail.com</a></p>
+    </div>
+  </section>
+
+  <!-- スクリプト -->
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,265 +1,211 @@
-/* グローバル設定 */
-body {
-  font-family: Arial, sans-serif;
+/* ベースのスタイル */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
   background-color: rgb(147, 207, 205); /* 背景色 */
   color: #333;
+  line-height: 1.6;
+  font-size: 1rem;
 }
 
-a {
-  text-decoration: none;
-  color: #0077cc;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* ヘッダー */
+/* ヘッダー部分 */
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
   background-color: #333;
   color: white;
+  padding: 20px 0;
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
   z-index: 1000;
-  height: 60px; /* ヘッダー高さ調整 */
+}
+
+header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
 header h1 {
-  margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.8rem;
 }
 
-.menu-toggle {
-  display: none;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 25px;
-  cursor: pointer;
-  z-index: 2000;
+header nav {
+  display: none; /* 初期状態で隠す */
 }
 
-.menu-toggle span {
-  display: block;
-  height: 3px;
-  background: #fff;
-  margin: 4px 0;
-}
-
-nav {
+header nav ul {
+  list-style: none;
   display: flex;
 }
 
-nav a {
+header nav ul li {
+  margin-right: 20px;
+}
+
+header nav ul li a {
   color: white;
-  margin: 0 10px;
+  text-decoration: none;
   font-size: 1rem;
-  padding: 5px;
-}
-
-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-}
-
-@media screen and (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-}
-
-/* プロフィール */
-section {
-  padding: 20px;
-  margin-top: 100px;
-}
-
-section h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-section p {
-  margin-bottom: 5px;
-}
-
-/* 代表作 */
-.representative-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.book-left {
-  flex: 1;
-  margin-right: 20px;
-}
-
-.book-cover {
-  width: 100%;
-  max-width: 150px;
-  border: 2px solid white; /* 白い枠 */
-  border-radius: 5px;
-}
-
-.book-right {
-  flex: 2;
-}
-
-/* スライド */
-.slider-container {
-  display: flex;
-  overflow: hidden;
-  margin-bottom: 2rem;
-  border-radius: 10px;
-  position: relative;
-}
-
-.slide {
-  flex-shrink: 0;
-  width: 100%;
-  background-color: #fdfdfd;
-  padding: 1rem;
-  box-sizing: border-box;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  transition: transform 0.5s ease;
-}
-
-/* スライドボタン */
-.slider-controls {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
-.slider-controls button {
-  background-color: #333;
-  color: white;
-  border: none;
   padding: 10px;
+}
+
+header nav ul li a:hover {
+  background-color: #444;
+  border-radius: 5px;
+}
+
+.hamburger {
+  display: block;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  color: white;
 }
 
-.slider-controls button:hover {
-  background-color: #555;
+.hamburger.active + nav {
+  display: block; /* ハンバーガーメニューがアクティブなときに表示 */
 }
 
-/* 代表作に関するスタイル */
-.representative-wrapper {
-  display: flex;
-  justify-content: flex-start;
-  margin: 20px 0;
-}
-
-.book-left {
-  margin-right: 20px;
-}
-
-.book-cover {
-  width: 150px;
-  height: auto;
-  border: 2px solid white; /* 白い枠 */
-  border-radius: 5px;
-}
-
-/* トップに戻るボタン */
-#back-to-top {
+/* スクロールした場合にTOPに戻るボタン */
+#scroll-to-top {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  display: none;
-  background-color: #0077cc;
+  background-color: #333;
   color: white;
-  border: none;
-  padding: 10px 20px;
+  padding: 10px;
+  border-radius: 50%;
+  display: none;
   cursor: pointer;
-  border-radius: 5px;
+  font-size: 1.5rem;
+  z-index: 1000;
 }
 
-#back-to-top:hover {
-  background-color: #005fa3;
+#scroll-to-top:hover {
+  background-color: #444;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background-color: #333;
-  color: white;
+/* セクション共通 */
+.section {
+  position: relative;
+  background-color: rgb(147, 207, 205); /* 背景色 */
+  padding: 50px 0;
+  margin-bottom: 30px;
 }
 
-/* ハンバーガーメニュー */
-.menu-toggle {
-  display: none;
+/* 白いボックス */
+.section .content-box {
+  background-color: white;
+  padding: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ボックスの影 */
+  border-radius: 10px; /* 角を丸く */
+  position: relative;
+  z-index: 1; /* ボックスを最前面に */
 }
 
-@media (max-width: 768px) {
-  nav {
-    display: none;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.8);
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 200px;
-  }
-
-  nav.active {
-    display: flex;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
+/* タイトル（ヘッダー）部分 */
+.section .content-box h2 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333; /* 文字色 */
 }
-/* 作品数表示 */
-.slider-info {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+
+/* 各セクションの文章部分 */
+.section .content-box p {
   font-size: 1rem;
-  color: #333;
+  color: #555; /* 文字色 */
+  line-height: 1.6;
 }
 
-.slider-controls {
+/* 代表作の書影のスタイル */
+.works img {
+  width: 250px;
+  height: auto;
+  margin-right: 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* 白い細線で枠を作る */
+  border-radius: 10px;
+}
+
+/* 作品スライドショー */
+.slide-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slide-wrapper {
   display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+  transition: transform 0.5s ease;
 }
 
-.slider-controls button {
-  background-color: #333;
+.slide-wrapper .slide {
+  flex: 0 0 100%; /* 1つのスライドが全体幅を占める */
+  padding: 10px;
+}
+
+.slide-wrapper .slide img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* 前へ、次へボタン */
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
+  font-size: 2rem;
   padding: 10px;
   cursor: pointer;
-  border-radius: 5px;
-  font-size: 1.5rem;
+  z-index: 10;
+  border-radius: 50%;
 }
 
-.slider-controls button:hover {
-  background-color: #555;
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
+
+/* 作品スライドの個別設定（長編、短編） */
+.long-works .slide, .short-works .slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+  header .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section .content-box {
+    padding: 20px;
+  }
+
+  .works img {
+    width: 200px;
+    margin-right: 20px;
+  }
+
+  .prev, .next {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
 }
