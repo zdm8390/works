@@ -1,211 +1,339 @@
-/* ベースのスタイル */
-* {
+/* グローバル設定 */
+body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Arial', sans-serif;
-}
-
-body {
   background-color: rgb(147, 207, 205); /* 背景色 */
   color: #333;
-  line-height: 1.6;
-  font-size: 1rem;
 }
 
-/* ヘッダー部分 */
+a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* ヘッダー */
 header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
   background-color: #333;
   color: white;
-  padding: 20px 0;
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   z-index: 1000;
-}
-
-header .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  height: 60px; /* ヘッダー高さ調整 */
 }
 
 header h1 {
-  font-size: 1.8rem;
+  margin: 0;
+  font-size: 1.5rem;
 }
 
-header nav {
-  display: none; /* 初期状態で隠す */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+  z-index: 2000;
 }
 
-header nav ul {
-  list-style: none;
+.menu-toggle span {
+  display: block;
+  height: 3px;
+  background: #fff;
+  margin: 4px 0;
+}
+
+nav {
   display: flex;
 }
 
-header nav ul li {
-  margin-right: 20px;
-}
-
-header nav ul li a {
+nav a {
   color: white;
-  text-decoration: none;
+  margin: 0 10px;
   font-size: 1rem;
-  padding: 10px;
+  padding: 5px;
 }
 
-header nav ul li a:hover {
-  background-color: #444;
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
 }
 
-.hamburger {
-  display: block;
-  cursor: pointer;
-  font-size: 2rem;
-  color: white;
+@media screen and (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
 }
 
-.hamburger.active + nav {
-  display: block; /* ハンバーガーメニューがアクティブなときに表示 */
+/* プロフィール */
+section {
+  padding: 20px;
+  margin-top: 100px;
 }
 
-/* スクロールした場合にTOPに戻るボタン */
-#scroll-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #333;
-  color: white;
-  padding: 10px;
-  border-radius: 50%;
-  display: none;
-  cursor: pointer;
+section h2 {
   font-size: 1.5rem;
-  z-index: 1000;
+  margin-bottom: 10px;
 }
 
-#scroll-to-top:hover {
-  background-color: #444;
+section p {
+  margin-bottom: 5px;
 }
 
-/* セクション共通 */
-.section {
-  position: relative;
-  background-color: rgb(147, 207, 205); /* 背景色 */
-  padding: 50px 0;
-  margin-bottom: 30px;
-}
-
-/* 白いボックス */
-.section .content-box {
-  background-color: white;
-  padding: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ボックスの影 */
-  border-radius: 10px; /* 角を丸く */
-  position: relative;
-  z-index: 1; /* ボックスを最前面に */
-}
-
-/* タイトル（ヘッダー）部分 */
-.section .content-box h2 {
-  margin: 0;
-  font-size: 2rem;
-  font-weight: bold;
-  color: #333; /* 文字色 */
-}
-
-/* 各セクションの文章部分 */
-.section .content-box p {
-  font-size: 1rem;
-  color: #555; /* 文字色 */
-  line-height: 1.6;
-}
-
-/* 代表作の書影のスタイル */
-.works img {
-  width: 250px;
-  height: auto;
-  margin-right: 30px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd; /* 白い細線で枠を作る */
-  border-radius: 10px;
-}
-
-/* 作品スライドショー */
-.slide-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-}
-
-.slide-wrapper {
+/* 代表作 */
+.representative-wrapper {
   display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.book-left {
+  flex: 1;
+  margin-right: 20px;
+}
+
+.book-cover {
+  width: 100%;
+  max-width: 150px;
+  border: 2px solid white; /* 白い枠 */
+  border-radius: 5px;
+}
+
+.book-right {
+  flex: 2;
+}
+
+/* スライド */
+.slider-container {
+  display: flex;
+  overflow: hidden;
+  margin-bottom: 2rem;
+  border-radius: 10px;
+  position: relative;
+}
+
+.slide {
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #fdfdfd;
+  padding: 1rem;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   transition: transform 0.5s ease;
 }
 
-.slide-wrapper .slide {
-  flex: 0 0 100%; /* 1つのスライドが全体幅を占める */
-  padding: 10px;
+/* スライドボタン */
+.slider-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
-.slide-wrapper .slide img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-/* 前へ、次へボタン */
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
+.slider-controls button {
+  background-color: #333;
   color: white;
   border: none;
-  font-size: 2rem;
   padding: 10px;
   cursor: pointer;
-  z-index: 10;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.slider-controls button:hover {
+  background-color: #555;
+}
+
+/* 代表作に関するスタイル */
+.representative-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px 0;
+}
+
+.book-left {
+  margin-right: 20px;
+}
+
+.book-cover {
+  width: 150px;
+  height: auto;
+  border: 2px solid white; /* 白い枠 */
+  border-radius: 5px;
+}
+
+/* トップに戻るボタン */
+#back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background-color: #0077cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#back-to-top:hover {
+  background-color: #005fa3;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #333;
+  color: white;
+}
+
+/* ハンバーガーメニュー */
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.8);
+    position: absolute;
+    top: 60px;
+    right: 0;
+    width: 200px;
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+}
+/* その他のCSSはそのまま保持 */
+
+/* 作品数表示 */
+.slider-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.slider-controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.slider-controls button {
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.slider-controls button:hover {
+  background-color: #555;
+}
+.publisher-link {
+  display: inline-block;
+  margin-top: 8px;
+  color: #003366; /* 濃い青で背景色 rgb(147, 207, 205) に対して視認性が高い */
+  text-decoration: underline;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.publisher-link:hover {
+  color: #000000; /* ホバー時に黒くしてより目立つように */
+}
+h2 {
+  position: relative;
+  display: inline-block;
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #003366;
+  margin-bottom: 20px;
+  padding-bottom: 8px;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  height: 3px;
+  background-color: #ffffff;
+  border-radius: 2px;
+}
+
+h3 {
+  font-weight: bold;
+  color: #003366;
+}
+
+/* スライドボタン共通スタイル */
+.slide-button {
+  background-color: #ffffff;
+  color: #003366;
+  border: 2px solid #003366;
   border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+
+  /* 中央揃えのために追加 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0; /* パディングの余白をなくす */
 }
 
-.prev {
-  left: 10px;
+/* ホバーで色が反転 */
+.slide-button:hover {
+  background-color: #003366;
+  color: #ffffff;
 }
 
-.next {
-  right: 10px;
-}
-
-/* 作品スライドの個別設定（長編、短編） */
-.long-works .slide, .short-works .slide {
+.slider-controls {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-/* レスポンシブ対応 */
-@media screen and (max-width: 768px) {
-  header .container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .section .content-box {
-    padding: 20px;
-  }
-
-  .works img {
-    width: 200px;
-    margin-right: 20px;
-  }
-
-  .prev, .next {
-    font-size: 1.5rem;
-    padding: 8px;
-  }
+  gap: 20px;
+  margin: 20px 0;
 }
