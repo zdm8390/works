@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>善意の第三者 / Written Works</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="image/a.png" type="image/png" />
+</head>
+<body>
+
+  <header>
+    <h1>善意の第三者 / Written Works</h1>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span><span></span><span></span>
+    </div>
+    <nav id="nav">
+      <a href="#profile">プロフィール</a>
+      <a href="#representative">代表作</a>
+      <a href="#longworks">長編作品</a>
+      <a href="#shortworks">短編作品</a>
+      <a href="#contact">連絡先</a>
+    </nav>
+  </header>
+
+  <section id="profile">
+    <h2>プロフィール</h2>
+    <p><strong>ペンネーム：</strong>善意の第三者</p>
+    <p><strong>小説アカウント：</strong><a href="https://novelup.plus/user/974580553/profile" target="_blank">ノベルアップ＋</a></p>
+    <p><strong>X（旧Twitter）：</strong><a href="https://x.com/zen_e3" target="_blank">@zen_e3</a></p>
+    <p><strong>職業：</strong>システムエンジニアから図書館司書へ転職。</p>
+    <p><strong>経歴：</strong>2022年 小説投稿開始。2023年 第3回HJ小説大賞〈後期〉 最終選考通過。2024年『この感情が思い出に変わる頃には、』（扶桑社）にて商業デビュー。</p>
+    <p><strong>ジャンル：</strong>日本の高校を舞台にした青春群像劇を中心に執筆。人間ドラマや別れをテーマに描く。</p>
+    <p><strong>好きな作家：</strong>伊坂幸太郎、西尾維新、三田誠広、重松清</p>
+    <p><strong>好きな作品：</strong>Just Because！、ReLife、旅に出よう、この世界の果てまで。</p>
+  </section>
+
+  <section id="representative">
+    <h2>代表作</h2>
+    <div class="representative-wrapper">
+      <div class="book-left">
+        <img src="image/top1.jpg" alt="この感情が思い出に変わる頃には、書影" class="book-cover" />
+        <p><strong>この感情が思い出に変わる頃には、</strong><br>（扶桑社・2024年）</p>
+      </div>
+      <div class="book-right">
+        <p>── 別れがすべてを彩る。高校生活最後の一年、忘れたくない感情が詰まった青春群像劇。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="longworks">
+    <h2>長編作品</h2>
+    <div class="slider-container">
+      <div class="slider" id="long-slider">
+        <div class="slide">長編作品A：あらすじがここに入ります。</div>
+        <div class="slide">長編作品B：あらすじがここに入ります。</div>
+        <div class="slide">長編作品C：あらすじがここに入ります。</div>
+      </div>
+      <div class="slider-controls">
+        <button onclick="moveSlide('long-slider', -1)">◀</button>
+        <button onclick="moveSlide('long-slider', 1)">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="shortworks">
+    <h2>短編作品</h2>
+    <div class="slider-container">
+      <div class="slider" id="short-slider">
+        <div class="slide">短編作品A：あらすじがここに入ります。</div>
+        <div class="slide">短編作品B：あらすじがここに入ります。</div>
+        <div class="slide">短編作品C：あらすじがここに入ります。</div>
+      </div>
+      <div class="slider-controls">
+        <button onclick="moveSlide('short-slider', -1)">◀</button>
+        <button onclick="moveSlide('short-slider', 1)">▶</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>連絡先</h2>
+    <p>ご連絡・ご依頼は以下のメールアドレスへお願いいたします。</p>
+    <p><a href="mailto:speed.and.knives@gmail.com">speed.and.knives@gmail.com</a></p>
+  </section>
+
+  <button id="back-to-top" onclick="scrollToTop()">▲</button>
+
+  <footer>
+    <p>&copy; 2025 善意の第三者</p>
+  </footer>
+
+  <script>
+    // ハンバーガーメニュー
+    const toggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('active');
+      nav.classList.toggle('active');
+    });
+
+    // スライダー
+    function moveSlide(id, direction) {
+      const slider = document.getElementById(id);
+      const slides = slider.children.length;
+      const currentTransform = getComputedStyle(slider).transform;
+      let matrix = currentTransform.match(/matrix.*\((.+)\)/);
+      let currentX = matrix ? parseFloat(matrix[1].split(', ')[4]) : 0;
+      let width = slider.clientWidth;
+      let newX = currentX - direction * width;
+
+      const maxX = -(slides - 1) * width;
+      if (newX > 0) newX = 0;
+      if (newX < maxX) newX = maxX;
+
+      slider.style.transform = `translateX(${newX}px)`;
+    }
+
+    // TOPに戻るボタン
+    const backToTop = document.getElementById("back-to-top");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 300) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
+    });
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
