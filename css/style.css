@@ -6,6 +6,19 @@ body {
   background-color: rgb(147, 207, 205); /* 背景色 */
   color: #333;
 }
+/* コンテナの幅を制限 */
+.container {
+  width: 100%;
+  max-width: 1200px;   /* 最大幅を1200pxに設定 */
+  margin: 0 auto;      /* 左右の余白を自動調整 */
+  padding: 20px 60px;  /* 上下20px、左右60px */
+  box-sizing: border-box;
+  display: flex;       /* Flexboxを使う */
+  flex-direction: column; /* 縦並びにする */
+  justify-content: center; /* 縦方向に中央寄せ */
+  /*align-items: center;*/ /* 横方向に中央寄せ */
+  height: 100vh; /* 高さを画面全体に設定 */
+}
 
 a {
   text-decoration: none;
@@ -233,6 +246,11 @@ footer {
 
   .menu-toggle {
     display: flex;
+  }
+  .container {
+    width: 100%;
+    padding: 15px;
+    height: auto;  /* モバイルでは高さを自動調整 */
   }
 }
 /* その他のCSSはそのまま保持 */
