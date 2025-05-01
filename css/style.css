@@ -129,22 +129,25 @@ section p {
 
 /* 長編・短編作品 */
 .slider-container {
-  background-color: #ffffffcc; /* 半透明白 */
-  padding: 1rem;
+  display: flex;
+  overflow: hidden; /* スライドが外に出ないように */
   margin-bottom: 2rem;
   border-radius: 10px;
+  position: relative;
 }
 
 .slide {
-  min-width: 100%;
+  flex-shrink: 0; /* スライドが縮まないように */
+  width: 100%; /* 一度に1枚のスライドが表示される */
   background-color: #fdfdfd;
   padding: 1rem;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 8px;
+  transition: transform 0.5s ease; /* スライドが動くときのアニメーション */
 }
 
-/* スライダーの操作ボタン */
+/* スライドの操作ボタン */
 .slider-controls button {
   background-color: #333;
   color: white;
