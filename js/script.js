@@ -1,56 +1,81 @@
-// スライダーの初期化
-let currentLong = 0;
-let currentShort = 0;
+document.addEventListener('DOMContentLoaded', () => {
+  /**
+   * Creates a slider functionality for a given set of elements.
+   * @param {string} type - The identifier for the slider (e.g., 'long', 'short').
+   */
+  const initializeSlider = (type) => {
+    const slides = document.querySelectorAll(`#${type}-works .slide`);
+    const prevButton = document.getElementById(`prev-${type}`);
+    const nextButton = document.getElementById(`next-${type}`);
+    const currentLabel = document.getElementById(`${type}-current`);
+    
+    if (slides.length === 0 || !prevButton || !nextButton || !currentLabel) {
+      return; // Don't run if elements are missing
+    }
 
-const longWorks = document.querySelectorAll('#long-works .slide');
-const shortWorks = document.querySelectorAll('#short-works .slide');
+    let currentIndex = 0;
+    const totalSlides = slides.length;
 
-const longCurrent = document.getElementById('long-current');
-const shortCurrent = document.getElementById('short-current');
+    const updateSlider = () => {
+      slides.forEach(slide => {
+        slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+      });
+      currentLabel.textContent = `${currentIndex + 1}/${totalSlides}`;
+    };
 
-// 長編作品のスライド前後切替
-document.getElementById('prev-long').addEventListener('click', function() {
-  if (currentLong > 0) {
-    currentLong--;
-    updateSlider('long');
-  }
+    prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        updateSlider();
+      }
+    });
+
+    nextButton.addEventListener('click', () => {
+      if (currentIndex < totalSlides - 1) {
+        currentIndex++;
+        updateSlider();
+      }
+    });
+
+    updateSlider(); // Initial render
+  };
+
+  /**
+   * Sets up the mobile navigation menu toggle.
+   */
+  const setupMobileMenu = () => {
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.querySelector('nav');
+    if (menuToggle && nav) {
+      menuToggle.addEventListener('click', () => {
+        nav.classList.toggle('active');
+      });
+    }
+  };
+
+  /**
+   * Sets up the "back to top" button visibility and click action.
+   */
+  const setupBackToTopButton = () => {
+    const backToTopButton = document.getElementById('back-to-top');
+    if (backToTopButton) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+          backToTopButton.style.display = 'block';
+        } else {
+          backToTopButton.style.display = 'none';
+        }
+      });
+
+      backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  };
+
+  // Initialize all functionalities
+  initializeSlider('long');
+  initializeSlider('short');
+  setupMobileMenu();
+  setupBackToTopButton();
 });
-
-document.getElementById('next-long').addEventListener('click', function() {
-  if (currentLong < longWorks.length - 1) {
-    currentLong++;
-    updateSlider('long');
-  }
-});
-
-// 短編作品のスライド前後切替
-document.getElementById('prev-short').addEventListener('click', function() {
-  if (currentShort > 0) {
-    currentShort--;
-    updateSlider('short');
-  }
-});
-
-document.getElementById('next-short').addEventListener('click', function() {
-  if (currentShort < shortWorks.length - 1) {
-    currentShort++;
-    updateSlider('short');
-  }
-});
-
-// スライドを更新
-function updateSlider(type) {
-  const current = type === 'long' ? currentLong : currentShort;
-  const works = type === 'long' ? longWorks : shortWorks;
-  const currentLabel = type === 'long' ? longCurrent : shortCurrent;
-
-  works.forEach((slide, index) => {
-    slide.style.transform = `translateX(-${current * 100}%)`;
-  });
-
-  currentLabel.textContent = `${current + 1}/${works.length}`;
-}
-
-// 初期表示を設定
-updateSlider('long');
-updateSlider('short');
