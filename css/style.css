@@ -145,6 +145,72 @@ h3 {
   border: 1px solid var(--content-box-border);
 }
 
+/* Profile Lists & Indentation */
+.history-list,
+.publication-list,
+.link-list {
+  margin: 0 0 1.5rem 0;
+}
+
+.history-list dt {
+  margin-bottom: 4px;
+}
+
+.history-list dd {
+  margin: 0 0 4px 1em;
+}
+
+.publication-list dt {
+  margin: 8px 0 4px 1em;
+}
+
+.publication-list dd {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 0 6px 6em;
+}
+
+.pub-year {
+  margin-right: 1em;
+  flex-shrink: 0;
+}
+
+.pub-detail {
+  flex: 1;
+}
+
+.speed-list {
+  margin: 0 0 1.5rem 0;
+  padding-left: 2.5em;
+}
+
+.speed-list li {
+  margin-bottom: 4px;
+}
+
+.link-item {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+
+.link-item:nth-child(2) {
+  padding-left: 1em;
+}
+
+.link-item dt,
+.link-item dd {
+  margin: 0;
+}
+
+/* Short Works Meta Alignment */
+.work-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.5em;
+}
+
 /* Representative Work */
 .representative-wrapper {
   display: flex;
@@ -308,5 +374,9 @@ footer {
   .book-left {
     margin-right: 0;
     margin-bottom: 20px;
+  }
+
+  .publication-list dd {
+    margin-left: 2em;
   }
 }
