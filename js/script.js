@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
    * @param {string} type - The identifier for the slider (e.g., 'long', 'short').
    */
   const initializeSlider = (type) => {
+    const container = document.getElementById(`${type}-works`);
     const slides = document.querySelectorAll(`#${type}-works .slide`);
     const prevButton = document.getElementById(`prev-${type}`);
     const nextButton = document.getElementById(`next-${type}`);
@@ -17,10 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalSlides = slides.length;
 
     const updateSlider = () => {
-      slides.forEach(slide => {
+      slides.forEach((slide, index) => {
         slide.style.transform = `translateX(-${currentIndex * 100}%)`;
+        slide.setAttribute('aria-hidden', index !== currentIndex ? 'true' : 'false');
       });
       currentLabel.textContent = `${currentIndex + 1}/${totalSlides}`;
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === totalSlides - 1;
     };
 
     prevButton.addEventListener('click', () => {
@@ -37,6 +41,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
+    // Touch swipe support for mobile devices
+    if (container) {
+      let touchStartX = 0;
+      container.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      container.addEventListener('touchend', (e) => {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+        if (Math.abs(diff) > 40) {
+          if (diff > 0 && currentIndex < totalSlides - 1) {
+            currentIndex++;
+            updateSlider();
+          } else if (diff < 0 && currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+          }
+        }
+      }, { passive: true });
+    }
+
     updateSlider(); // Initial render
   };
 
@@ -47,8 +73,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const menuToggle = document.getElementById('menu-toggle');
     const nav = document.querySelector('nav');
     if (menuToggle && nav) {
-      menuToggle.addEventListener('click', () => {
-        nav.classList.toggle('active');
+      const toggleMenu = () => {
+        const isActive = nav.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+      };
+
+      menuToggle.addEventListener('click', toggleMenu);
+      menuToggle.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleMenu();
+        }
+      });
+
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          nav.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
       });
     }
   };
